@@ -1,0 +1,50 @@
+create table roles
+(
+    id        int UNSIGNED AUTO_INCREMENT
+        primary key,
+    role_name varchar(255) null
+);
+
+create table users
+(
+    id         int UNSIGNED auto_increment
+        primary key,
+    full_name  varchar(255)						   null,
+    username   varchar(255)                        not null,
+    password   varchar(255)                        not null,
+    email      varchar(255)                        null,
+    phone_number      varchar(255)                        null,
+    role_id    int                                 not null,
+    created_at timestamp default CURRENT_TIMESTAMP null,
+    updated_at timestamp default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP,
+    constraint `users_username_uindex`
+        unique (username),
+    constraint users_roles_id_fk
+        foreign key (role_id) references roles (id)
+);
+
+CREATE TABLE posts (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id int not null,
+    title VARCHAR(50),
+    body TEXT,
+    created_at timestamp default CURRENT_TIMESTAMP null,
+    updated_at timestamp default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP,
+    constraint posts_users_id_fk
+        foreign key (user_id) references users (id)
+);
+
+create table comments
+(
+    id        int UNSIGNED AUTO_INCREMENT
+        primary key,
+    body TEXT,
+    user_id int not null,
+    post_id int not null,
+    created_at timestamp default CURRENT_TIMESTAMP null,
+    updated_at timestamp default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP,
+    constraint comments_users_id_fk
+        foreign key (user_id) references users (id),
+    constraint comments_posts_id_fk
+        foreign key (post_id) references posts (id)
+);
