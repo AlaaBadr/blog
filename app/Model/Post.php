@@ -22,8 +22,8 @@ class Post extends AppModel {
  */
     public $validate = array(
         'id' => array(
-            'notEmpty' => array(
-                'rule' => array('notEmpty'),
+            'notBlank' => array(
+                'rule' => array('notBlank'),
             ),
         ),
         'user_id' => array(
@@ -32,13 +32,13 @@ class Post extends AppModel {
             )
         ),
         'title' => array(
-            'notEmpty' => array(
-                'rule' => array('notEmpty'),
+            'notBlank' => array(
+                'rule' => array('notBlank'),
             ),
         ),
         'body' => array(
-            'notEmpty' => array(
-                'rule' => array('notEmpty'),
+            'notBlank' => array(
+                'rule' => array('notBlank'),
             ),
         ),
     );

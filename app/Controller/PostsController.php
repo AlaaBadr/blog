@@ -18,7 +18,7 @@ class PostsController extends AppController {
         if ($this->request->is('post')) {
             $data = array(
                 'Post' =>
-                    array_merge($this->request->data['Post'], array('user_id' => 1))
+                    array_merge($this->request->data['Post'], array('user_id' => AuthComponent::user('id')))
             );
             $this->Post->create();
             if ($this->Post->save($data)) {

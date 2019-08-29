@@ -87,6 +87,10 @@ body {
                 echo $this->HTML->link(
                     'Login',
                     array('controller' => 'users', 'action' => 'login')
+                )." ";
+                echo $this->HTML->link(
+                    'Register',
+                    array('controller' => 'users', 'action' => 'add')
                 );
             }
         ?>
@@ -94,10 +98,12 @@ body {
         <br>
         <h3>
             <?php
-                echo $this->HTML->link(
-                    'Add a new Post',
-                    array('controller' => 'posts', 'action' => 'add')
-                );
+                if (AuthComponent::user('role_id') == 2) {
+                    echo $this->HTML->link(
+                        'Add a new Post',
+                        array('controller' => 'posts', 'action' => 'add')
+                    );
+                }
             ?>
         </h3>
 
@@ -122,15 +128,19 @@ body {
                     ?>
                 </h5>
                 <br><br><br>
-                <?php echo $this->HTML->link(
-                    'Edit',
-                    array('controller' => 'posts', 'action' => 'edit', $post['Post']['id'])
-                ); ?>
-                <?php echo $this->Form->postLink(
-                    'Delete',
-                    array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']),
-                    array('confirm' => 'Are you sure you want to delete this post?')
-                ); ?>
+                <?php
+                    if (AuthComponent::user('role_id') == 1 || AuthComponent::user('id') == $post['Post']['user_id']) {
+                        echo $this->HTML->link(
+                            'Edit',
+                            array('controller' => 'posts', 'action' => 'edit', $post['Post']['id'])
+                        )." ";
+                        echo $this->Form->postLink(
+                            'Delete',
+                            array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']),
+                            array('confirm' => 'Are you sure you want to delete this post?')
+                        );
+                    }
+                ?>
             </div>
         <?php endforeach; ?>
         <?php unset($post); ?>
