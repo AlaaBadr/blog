@@ -1,7 +1,98 @@
-<?php
-    echo $post['Post']['title'];
-    echo $post['Post']['body'];
-    echo $post['Post']['user_id'];
-    echo $post['Post']['created_at'];
-    echo $post['Post']['updated_at'];
-?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Add a gray background color with some padding */
+body {
+  font-family: Arial;
+  padding: 20px;
+}
+
+/* Card Container */
+.card {
+  margin: auto;
+  width: 60%;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Right column */
+.rightcolumn {
+  float: right;
+  width: 25%;
+  padding-left: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
+}
+
+</style>
+</head>
+<body>
+<div class="card">
+    <h2>
+        <?php echo $this->HTML->link(
+            $post['Post']['title'],
+            array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])
+        ); ?>
+    </h2>
+    <p><?php echo $post['Post']['body']; ?></p>
+    <br>
+    <h5 class="rightcolumn">
+        <?php
+            echo "By: ".$post['Post']['user_id']."<br>
+            Created: ".$post['Post']['created_at']."<br>
+            Updated: ".$post['Post']['updated_at'];
+        ?>
+    </h5>
+    <br><br><br>
+    <?php echo $this->HTML->link(
+        'Edit',
+        array('controller' => 'posts', 'action' => 'edit', $post['Post']['id'])
+    ); ?>
+    <?php echo $this->Form->postLink(
+        'Delete',
+        array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']),
+        array('confirm' => 'Are you sure you want to delete this post?')
+    ); ?>
+    <br><br><br>
+    <h4>Comments</h4>
+    <?php
+        echo $this->HTML->link(
+            'Add a new Comment',
+            array('controller' => 'comments', 'action' => 'add', $post['Post']['id'])
+        );
+    ?>
+    <br><br>
+    <?php foreach ($post['Comment'] as $comment) : ?>
+        <div>
+            <?php
+                echo $comment['body']."<br>";
+                echo "By: ".$comment['user_id']."<br>";
+                echo "Created: ".$comment['created_at']."<br>";
+                echo "Updated: ".$comment['updated_at']."<br>";
+                echo $this->HTML->link(
+                    'Edit',
+                     array('controller' => 'comments', 'action' => 'edit', $comment['id'])
+                )." ";
+                echo $this->Form->postLink(
+                    'Delete',
+                    array('controller' => 'comments', 'action' => 'delete', $comment['id']),
+                    array('confirm' => 'Are you sure you want to delete this Comment?')
+                )."<br>";
+                echo "------------------------------------------------------";
+            ?>
+        </div>
+    <?php endforeach; ?>
+    <?php unset($comment); ?>
+</div>
+</body>
+</html>
