@@ -10,6 +10,10 @@ App::uses('AppController', 'Controller');
 
 class PostsController extends AppController {
 
+    public function beforeFilter() {
+        $this->Auth->allow('index');
+    }
+
     public function add() {
         if ($this->request->is('post')) {
             $data = array(
@@ -18,7 +22,7 @@ class PostsController extends AppController {
             );
             $this->Post->create();
             if ($this->Post->save($data)) {
-//                $this->Session->setFlash('The Post has been created!');
+                $this->Flash->success('The Post has been created!');
                 $this->redirect('index');
             }
         }
@@ -42,7 +46,7 @@ class PostsController extends AppController {
         if ($this->request->is(array('post', 'put'))) {
             $this->Post->id = $id;
             if ($this->Post->save($this->request->data)) {
-//                $this->Session->setFlash('The Post has been edited!');
+                $this->Flash->success('The Post has been edited!');
                 $this->redirect('index');
             }
         }
@@ -55,7 +59,7 @@ class PostsController extends AppController {
 
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Post->delete()) {
-//                $this->Session->setFlash('The Post has been deleted!');
+                $this->Flash->success('The Post has been deleted!');
                 $this->redirect('index');
             }
         }

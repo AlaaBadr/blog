@@ -57,14 +57,6 @@ body {
   clear: both;
 }
 
-/* Footer */
-.footer {
-  padding: 20px;
-  text-align: center;
-  background: #ddd;
-  margin-top: 20px;
-}
-
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
   .posts {
@@ -80,8 +72,26 @@ body {
   <h2>dlc. MTG Blog</h2>
 </div>
 
+
+
 <div class="row">
     <div class="rightcolumn">
+        <h4>
+        <?php
+            if (AuthComponent::user()) {
+                echo $this->HTML->link(
+                    'Logout',
+                    array('controller' => 'users', 'action' => 'logout')
+                );
+            } else {
+                echo $this->HTML->link(
+                    'Login',
+                    array('controller' => 'users', 'action' => 'login')
+                );
+            }
+        ?>
+        </h4>
+        <br>
         <h3>
             <?php
                 echo $this->HTML->link(
@@ -90,6 +100,7 @@ body {
                 );
             ?>
         </h3>
+
     </div>
     <br>
     <div class="posts">
@@ -124,10 +135,6 @@ body {
         <?php endforeach; ?>
         <?php unset($post); ?>
   </div>
-</div>
-
-<div class="footer">
-  <h2>Footer</h2>
 </div>
 
 </body>
