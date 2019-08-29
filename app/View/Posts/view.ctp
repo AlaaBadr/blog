@@ -79,15 +79,19 @@ body {
                 echo "By: ".$comment['user_id']."<br>";
                 echo "Created: ".$comment['created_at']."<br>";
                 echo "Updated: ".$comment['updated_at']."<br>";
+                if (AuthComponent::user('id') == $comment['user_id']) {
                 echo $this->HTML->link(
                     'Edit',
                      array('controller' => 'comments', 'action' => 'edit', $comment['id'])
                 )." ";
+                }
+                if (AuthComponent::user('id') == $comment['user_id'] || AuthComponent::user('role_id') == 1) {
                 echo $this->Form->postLink(
                     'Delete',
                     array('controller' => 'comments', 'action' => 'delete', $comment['id']),
                     array('confirm' => 'Are you sure you want to delete this Comment?')
                 )."<br>";
+                }
                 echo "------------------------------------------------------";
             ?>
         </div>

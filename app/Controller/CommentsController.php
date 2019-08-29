@@ -16,7 +16,7 @@ class CommentsController extends AppController
                 'Comment' =>
                     array_merge(
                         $this->request->data['Comment'],
-                        array('user_id' => 1, 'post_id' => $id)
+                        array('user_id' => AuthComponent::user('id'), 'post_id' => $id)
                     )
             );
             $this->Comment->create();
