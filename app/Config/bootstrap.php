@@ -1,7 +1,7 @@
 <?php
 
 // Load Composer autoload.
-require APP . 'Vendor\autoload.php';
+require APP . 'Vendor/autoload.php';
 
 // Remove and re-prepend CakePHP's autoloader as Composer thinks it is the
 // most important.
