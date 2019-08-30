@@ -13,6 +13,9 @@ Admin can add comments on posts (e.g moderating comments..)
 - Model Testing applied on all models, can be accessed using "localhost/blog/tests.php"
 - Controller Testing Examples are added to Posts Controller Test
 
+# Restful APIs
+Example on how to make Restful APIs along with the Web App Interface applied on posts/index in PostsController index function.
+
 # To Serve Project
 Rather than the normal steps to serve any CakePHP Project:
 1. Create Schema Database (e.g blog..) with Collation Scheme in order to support Arabic. And add your database configurations to app/Config/database.php file.
