@@ -44,6 +44,12 @@ class UsersController extends AppController {
         $this->redirect('/posts/index');
     }
 
+    public function getUsernameById($id) {
+        $data = $this->User->findById($id);
+
+        return $data['User']['username'];
+    }
+
 /**
  * index method
  *
@@ -61,13 +67,18 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null) {
-		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-		$this->set('user', $this->User->find('first', $options));
-	}
+//	public function view($id = null) {
+//		if (!$this->User->exists($id)) {
+//			throw new NotFoundException(__('Invalid user'));
+//		}
+//		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+//		$this->set('user', $this->User->find('first', $options));
+//	}
+    public function view($id) {
+        $data = $this->User->findById($id);
+
+        $this->set('user', $data);
+    }
 
 /**
  * add method
@@ -89,6 +100,33 @@ class UsersController extends AppController {
 		$this->set(compact('roles'));
 	}
 
+	public function changePassword($id) {
+        $data = $this->User->findById($id);
+
+        if ($this->request->is(array('post', 'put'))) {
+            if (AuthComponent::password($this->request->data['User']['oldPassword']) == $data['User']['password']) {
+                if ($this->request->data['User']['newPassword'] == $this->request->data['User']['passwordConfirmation']) {
+                    $this->User->id = $id;
+                    $this->request->data['User']['password'] = AuthComponent::password($this->request->data['User']['newPassword']);
+                    if ($this->User->save($this->request->data)) {
+                        $this->Flash->success('Profile Information has been updated!');
+                        $this->redirect(
+                            array(
+                                'controller' => 'users',
+                                'action' => 'view',
+                                $id
+                            )
+                        );
+                    }
+                } else {
+                    $this->Flash->error('Passwords do not match');
+                }
+            } else {
+                $this->Flash->error('Invalid Password, please enter valid one!');
+            }
+        }
+    }
+
 /**
  * edit method
  *
@@ -96,24 +134,47 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
-		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->User->save($this->request->data)) {
-				$this->Flash->success(__('The user has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Flash->error(__('The user could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-			$this->request->data = $this->User->find('first', $options);
-		}
-		$roles = $this->User->Role->find('list');
-		$this->set(compact('roles'));
-	}
+
+    public function edit($id) {
+        $data = $this->User->findById($id);
+
+        if ($this->request->is(array('post', 'put'))) {
+            $this->User->id = $id;
+            if ($this->User->save($this->request->data)) {
+                $this->Flash->success('Profile Information has been updated!');
+                $this->redirect(
+                    array(
+                        'controller' => 'users',
+                        'action' => 'view',
+                        $id
+                    )
+                );
+            }
+        }
+
+        $this->request->data = $data;
+
+        $roles = $this->User->Role->find('list');
+        $this->set(compact('roles'));
+    }
+//	public function edit($id = null) {
+//		if (!$this->User->exists($id)) {
+//			throw new NotFoundException(__('Invalid user'));
+//		}
+//		if ($this->request->is(array('post', 'put'))) {
+//			if ($this->User->save($this->request->data)) {
+//				$this->Flash->success(__('The user has been saved.'));
+//				return $this->redirect(array('action' => 'index'));
+//			} else {
+//				$this->Flash->error(__('The user could not be saved. Please, try again.'));
+//			}
+//		} else {
+//			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+//			$this->request->data = $this->User->find('first', $options);
+//		}
+//		$roles = $this->User->Role->find('list');
+//		$this->set(compact('roles'));
+//	}
 
 /**
  * delete method

@@ -72,8 +72,6 @@ span.psw {
           echo $this->Form->input('password');
           echo $this->Form->end('Login');
       ?>
-      <br>
-      <a href="#">Forgot Password?</a>
   </div>
 
 </body>
