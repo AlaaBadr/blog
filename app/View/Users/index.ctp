@@ -11,7 +11,6 @@
 			<th><?php echo $this->Paginator->sort('role_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('created_at'); ?></th>
 			<th><?php echo $this->Paginator->sort('updated_at'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -25,10 +24,6 @@
 		<td><?php echo h($user['Role']['name']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['created_at']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['updated_at']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $user['User']['id']))); ?>
-		</td>
 	</tr>
 <?php endforeach; ?>
 	</tbody>
@@ -50,12 +45,10 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
+	    <?php if (AuthComponent::user('role_id') == 1) : ?>
 		<li><?php echo $this->Html->link(__('List Roles'), array('controller' => 'roles', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Role'), array('controller' => 'roles', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Comments'), array('controller' => 'comments', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Comment'), array('controller' => 'comments', 'action' => 'add')); ?> </li>
+		<?php endif; ?>
 		<li><?php echo $this->Html->link(__('List Posts'), array('controller' => 'posts', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Post'), array('controller' => 'posts', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

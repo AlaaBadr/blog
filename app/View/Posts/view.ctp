@@ -56,15 +56,19 @@ body {
         ?>
     </h5>
     <br><br><br>
-    <?php echo $this->HTML->link(
-        'Edit',
-        array('controller' => 'posts', 'action' => 'edit', $post['Post']['id'])
-    ); ?>
-    <?php echo $this->Form->postLink(
-        'Delete',
-        array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']),
-        array('confirm' => 'Are you sure you want to delete this post?')
-    ); ?>
+    <?php
+        if (AuthComponent::user('role_id') == 1 || AuthComponent::user('id') == $post['Post']['user_id']) {
+            echo $this->HTML->link(
+                'Edit',
+                array('controller' => 'posts', 'action' => 'edit', $post['Post']['id'])
+            )." ";
+            echo $this->Form->postLink(
+                'Delete',
+                array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']),
+                array('confirm' => 'Are you sure you want to delete this post?')
+            );
+        }
+    ?>
     <br><br><br>
     <h4>Comments</h4>
     <?php
