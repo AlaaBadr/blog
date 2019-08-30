@@ -10,6 +10,8 @@ App::uses('AppController', 'Controller');
 
 class PostsController extends AppController {
 
+    public $components = array('RequestHandler');
+
     public function beforeFilter() {
         $this->Auth->allow('index');
     }
@@ -18,6 +20,7 @@ class PostsController extends AppController {
         $data = $this->Post->getAllPosts();
 
         $this->set('posts', $data);
+        $this->set('_serialize', array('posts'));
     }
 
     public function view($id) {
