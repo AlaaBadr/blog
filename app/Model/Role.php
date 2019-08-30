@@ -38,4 +38,11 @@ class Role extends AppModel {
 		)
 	);
 
+    public function getAllRoles() {
+        return $this->find('all');
+    }
+
+    public function addRole($data) {
+        return $this->save($data);
+    }
 }

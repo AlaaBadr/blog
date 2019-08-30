@@ -14,6 +14,18 @@ class PostsController extends AppController {
         $this->Auth->allow('index');
     }
 
+    public function index() {
+        $data = $this->Post->getAllPosts();
+
+        $this->set('posts', $data);
+    }
+
+    public function view($id) {
+        $data = $this->Post->getSinglePost($id);
+
+        $this->set('post', $data);
+    }
+
     public function add() {
         if ($this->request->is('post')) {
             $data = array(
@@ -21,24 +33,11 @@ class PostsController extends AppController {
                     array_merge($this->request->data['Post'], array('user_id' => AuthComponent::user('id')))
             );
             $this->Post->create();
-            if ($this->Post->save($data)) {
+            if ($this->Post->addPost($data)) {
                 $this->Flash->success('The Post has been created!');
                 $this->redirect('index');
             }
         }
-    }
-
-    public function index() {
-        $data = $this->Post->find('all');
-
-        $this->set('posts', $data);
-    }
-
-    public function view($id) {
-        $data = $this->Post->findById($id);
-
-
-        $this->set('post', $data);
     }
 
     public function edit($id) {
@@ -46,7 +45,7 @@ class PostsController extends AppController {
 
         if ($this->request->is(array('post', 'put'))) {
             $this->Post->id = $id;
-            if ($this->Post->save($this->request->data)) {
+            if ($this->Post->editPost($this->request->data)) {
                 $this->Flash->success('The Post has been edited!');
                 $this->redirect('index');
             }

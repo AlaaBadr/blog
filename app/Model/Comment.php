@@ -32,4 +32,12 @@ class Comment extends AppModel {
 			'order' => ''
 		)
 	);
+
+    public function addComment($data) {
+        return $this->save($data);
+    }
+
+    public function editComment($data) {
+        return $this->save($data);
+    }
 }

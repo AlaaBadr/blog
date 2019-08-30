@@ -20,7 +20,7 @@ class CommentsController extends AppController
                     )
             );
             $this->Comment->create();
-            if ($this->Comment->save($data)) {
+            if ($this->Comment->addComment($data)) {
                 $this->Flash->success('The Post has been created!');
                 $this->redirect(
                     array(
@@ -40,7 +40,7 @@ class CommentsController extends AppController
 
         if ($this->request->is(array('post', 'put'))) {
             $this->Comment->id = $id;
-            if ($this->Comment->save($this->request->data)) {
+            if ($this->Comment->editComment($this->request->data)) {
                 $this->Flash->success('The Post has been edited!');
                 $this->redirect(
                     array(

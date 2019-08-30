@@ -99,4 +99,19 @@ class User extends AppModel {
 		)
 	);
 
+    public function getAllUsers() {
+        return $this->find('all');
+    }
+
+    public function getSingleUser($id) {
+        return $this->findById($id);
+    }
+
+    public function addUser($data) {
+        return $this->save($data);
+    }
+
+    public function editUser($data) {
+        return $this->save($data);
+    }
 }

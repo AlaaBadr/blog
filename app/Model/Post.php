@@ -82,4 +82,19 @@ class Post extends AppModel {
 		)
 	);
 
+	public function getAllPosts() {
+        return $this->find('all');
+    }
+
+    public function getSinglePost($id) {
+        return $this->findById($id);
+    }
+
+    public function addPost($data) {
+        return $this->save($data);
+    }
+
+    public function editPost($data) {
+        return $this->save($data);
+    }
 }
