@@ -35,15 +35,26 @@ class UserFixture extends CakeTestFixture {
 	public $records = array(
 		array(
 			'id' => 1,
-			'full_name' => 'Lorem ipsum dolor sit amet',
-			'username' => 'Lorem ipsum dolor sit amet',
-			'password' => 'Lorem ipsum dolor sit amet',
-			'email' => 'Lorem ipsum dolor sit amet',
-			'phone_number' => 'Lorem ipsum dolor sit amet',
+			'full_name' => 'Lorem ipsum dolor sit amet 1',
+			'username' => 'lorem_ipsum1',
+			'password' => 'loremipsum1',
+			'email' => 'lorem.ipsum1@dolor.sit',
+			'phone_number' => '01111111111',
 			'role_id' => 1,
 			'created_at' => '2019-04-14 19:29:40',
-			'updated_at' => '2019-04-14 19:29:40'
+			'updated_at' => '2019-04-14 19:29:40',
 		),
+        array(
+            'id' => 2,
+            'full_name' => 'Lorem ipsum dolor sit amet 2',
+            'username' => 'lorem_ipsum2',
+            'password' => 'loremipsum2',
+            'email' => 'lorem.ipsum2@dolor.sit',
+            'phone_number' => '01222222222',
+            'role_id' => 2,
+            'created_at' => '2019-04-14 19:29:40',
+            'updated_at' => '2019-04-14 19:29:40',
+        ),
 	);
 
 }
