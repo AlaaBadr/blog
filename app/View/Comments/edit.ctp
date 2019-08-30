@@ -1,4 +1,4 @@
-<h1>Edit an existing Comment</h1>
+<h2>Edit an existing Comment</h2>
 
 <?php
     echo $this->Form->create('Comment');

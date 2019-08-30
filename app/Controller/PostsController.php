@@ -37,6 +37,7 @@ class PostsController extends AppController {
     public function view($id) {
         $data = $this->Post->findById($id);
 
+
         $this->set('post', $data);
     }
 

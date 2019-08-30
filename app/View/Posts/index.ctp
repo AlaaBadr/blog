@@ -82,6 +82,10 @@ body {
                 echo $this->HTML->link(
                     'Logout',
                     array('controller' => 'users', 'action' => 'logout')
+                )."<br><br>";
+                echo $this->HTML->link(
+                    'Profile',
+                    array('controller' => 'users', 'action' => 'view', AuthComponent::user('id'))
                 );
             } else {
                 echo $this->HTML->link(
@@ -122,7 +126,7 @@ body {
                 <br>
                 <h5 class="rightcolumn">
                     <?php
-                        echo "By: ".$post['Post']['user_id']."<br>
+                        echo "By: ".$post['User']['username']."<br>
                         Created: ".$post['Post']['created_at']."<br>
                         Updated: ".$post['Post']['updated_at'];
                     ?>

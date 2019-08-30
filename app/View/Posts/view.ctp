@@ -1,3 +1,5 @@
+<?php App::import('controller', 'Users'); ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +50,7 @@ body {
     <br>
     <h5 class="rightcolumn">
         <?php
-            echo "By: ".$post['Post']['user_id']."<br>
+            echo "By: ".$post['User']['username']."<br>
             Created: ".$post['Post']['created_at']."<br>
             Updated: ".$post['Post']['updated_at'];
         ?>
@@ -75,10 +77,12 @@ body {
     <?php foreach ($post['Comment'] as $comment) : ?>
         <div>
             <?php
-                echo $comment['body']."<br>";
-                echo "By: ".$comment['user_id']."<br>";
+                echo $comment['body']."<br><br>";
+                $userController = new UsersController;
+                $username = $userController->getUsernameById($comment['user_id']);
+                echo "By: ".$username."<br>";
                 echo "Created: ".$comment['created_at']."<br>";
-                echo "Updated: ".$comment['updated_at']."<br>";
+                echo "Updated: ".$comment['updated_at']."<br><br>";
                 if (AuthComponent::user('id') == $comment['user_id']) {
                 echo $this->HTML->link(
                     'Edit',

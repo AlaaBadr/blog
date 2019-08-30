@@ -1,4 +1,4 @@
-<h1>Edit an existing Post</h1>
+<h2>Edit an existing Post</h2>
 
 <?php
     echo $this->Form->create('Post');
