@@ -79,20 +79,20 @@ body {
         <h4>
         <?php
             if (AuthComponent::user()) {
-                echo $this->HTML->link(
+                echo $this->Html->link(
                     'Logout',
                     array('controller' => 'users', 'action' => 'logout')
                 )."<br><br>";
-                echo $this->HTML->link(
+                echo $this->Html->link(
                     'Profile',
                     array('controller' => 'users', 'action' => 'view', AuthComponent::user('id'))
                 );
             } else {
-                echo $this->HTML->link(
+                echo $this->Html->link(
                     'Login',
                     array('controller' => 'users', 'action' => 'login')
                 )." ";
-                echo $this->HTML->link(
+                echo $this->Html->link(
                     'Register',
                     array('controller' => 'users', 'action' => 'add')
                 );
@@ -103,7 +103,7 @@ body {
         <h3>
             <?php
                 if (AuthComponent::user('role_id') == 2) {
-                    echo $this->HTML->link(
+                    echo $this->Html->link(
                         'Add a new Post',
                         array('controller' => 'posts', 'action' => 'add')
                     );
@@ -117,7 +117,7 @@ body {
         <?php foreach($posts as $post) : ?>
             <div class="card">
                 <h2>
-                    <?php echo $this->HTML->link(
+                    <?php echo $this->Html->link(
                         $post['Post']['title'],
                         array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])
                     ); ?>
@@ -134,7 +134,7 @@ body {
                 <br><br><br>
                 <?php
                     if (AuthComponent::user('role_id') == 1 || AuthComponent::user('id') == $post['Post']['user_id']) {
-                        echo $this->HTML->link(
+                        echo $this->Html->link(
                             'Edit',
                             array('controller' => 'posts', 'action' => 'edit', $post['Post']['id'])
                         )." ";

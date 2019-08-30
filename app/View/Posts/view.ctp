@@ -41,7 +41,7 @@ body {
 <body>
 <div class="card">
     <h2>
-        <?php echo $this->HTML->link(
+        <?php echo $this->Html->link(
             $post['Post']['title'],
             array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])
         ); ?>
@@ -58,7 +58,7 @@ body {
     <br><br><br>
     <?php
         if (AuthComponent::user('role_id') == 1 || AuthComponent::user('id') == $post['Post']['user_id']) {
-            echo $this->HTML->link(
+            echo $this->Html->link(
                 'Edit',
                 array('controller' => 'posts', 'action' => 'edit', $post['Post']['id'])
             )." ";
@@ -72,7 +72,7 @@ body {
     <br><br><br>
     <h4>Comments</h4>
     <?php
-        echo $this->HTML->link(
+        echo $this->Html->link(
             'Add a new Comment',
             array('controller' => 'comments', 'action' => 'add', $post['Post']['id'])
         );
@@ -88,7 +88,7 @@ body {
                 echo "Created: ".$comment['created_at']."<br>";
                 echo "Updated: ".$comment['updated_at']."<br><br>";
                 if (AuthComponent::user('id') == $comment['user_id']) {
-                echo $this->HTML->link(
+                echo $this->Html->link(
                     'Edit',
                      array('controller' => 'comments', 'action' => 'edit', $comment['id'])
                 )." ";

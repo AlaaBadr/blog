@@ -18,7 +18,7 @@
 		</dd>
 		<dt><?php echo __('Password'); ?></dt>
 		<dd>
-			<?php echo $this->HTML->link(
+			<?php echo $this->Html->link(
 			    'Change Password',
 			    array('controller' => 'users', 'action' => 'changePassword', AuthComponent::user('id')));
 			?>
