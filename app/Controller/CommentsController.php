@@ -61,7 +61,7 @@ class CommentsController extends AppController
         $comment = $this->Comment->findById($id);
 
         if ($this->request->is(array('post', 'put'))) {
-            if ($this->Comment->delete()) {
+            if ($this->Comment->deleteComment()) {
                 $this->Flash->success('The Comment has been deleted!');
                 $this->redirect(
                     array(

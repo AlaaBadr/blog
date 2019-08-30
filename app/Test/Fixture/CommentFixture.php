@@ -32,12 +32,28 @@ class CommentFixture extends CakeTestFixture {
 	public $records = array(
 		array(
 			'id' => 1,
-			'body' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
+			'body' => 'This is the very first test',
 			'user_id' => 1,
 			'post_id' => 1,
 			'created_at' => '2019-04-14 19:29:40',
-			'updated_at' => '2019-04-14 19:29:40'
+			'updated_at' => '2019-04-14 19:29:40',
 		),
+        array(
+            'id' => 2,
+            'body' => 'This is a testing comment',
+            'user_id' => 1,
+            'post_id' => 2,
+            'created_at' => '2019-04-14 19:29:40',
+            'updated_at' => '2019-04-14 19:29:40',
+        ),
+        array(
+            'id' => 3,
+            'body' => 'very nice post, keep it up',
+            'user_id' => 2,
+            'post_id' => 3,
+            'created_at' => '2019-04-14 19:29:40',
+            'updated_at' => '2019-04-14 19:29:40',
+        ),
 	);
 
 }

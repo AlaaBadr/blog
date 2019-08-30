@@ -40,4 +40,8 @@ class Comment extends AppModel {
     public function editComment($data) {
         return $this->save($data);
     }
+
+    public function deleteComment() {
+        return $this->delete();
+    }
 }
