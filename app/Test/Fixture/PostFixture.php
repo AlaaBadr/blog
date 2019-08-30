@@ -30,13 +30,29 @@ class PostFixture extends CakeTestFixture {
  */
 	public $records = array(
 		array(
-			'id' => 1,
-			'user_id' => 1,
-			'title' => 'Lorem ipsum dolor sit amet',
-			'body' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
-			'created_at' => 1566997862,
-			'updated_at' => 1566997862
-		),
+            'id' => 1,
+            'user_id' => 1,
+            'title' => 'Lorem ipsum dolor sit amet',
+            'body' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
+            'created_at' => '2019-04-14 19:29:40',
+            'updated_at' => '2019-04-14 19:29:40'
+        ),
+        array(
+            'id' => 2,
+            'user_id' => 1,
+            'title' => 'Lorem ipsum dolor sit amet',
+            'body' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
+            'created_at' => '2019-06-09 19:29:40',
+            'updated_at' => '2019-06-09 19:29:40'
+        ),
+        array(
+            'id' => 3,
+            'user_id' => 2,
+            'title' => 'Lorem ipsum dolor sit amet',
+            'body' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
+            'created_at' => '2019-02-26 19:29:40',
+            'updated_at' => '2019-02-26 19:29:40'
+        ),
 	);
 
 }

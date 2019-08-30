@@ -64,7 +64,7 @@ class PostsController extends AppController {
         $this->Post->id = $id;
 
         if ($this->request->is(array('post', 'put'))) {
-            if ($this->Post->delete()) {
+            if ($this->Post->deletePost()) {
                 $this->Flash->success('The Post has been deleted!');
                 $this->redirect('index');
             }

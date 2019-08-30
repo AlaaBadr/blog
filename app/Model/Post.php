@@ -97,4 +97,8 @@ class Post extends AppModel {
     public function editPost($data) {
         return $this->save($data);
     }
+
+    public function deletePost() {
+	    return $this->delete();
+    }
 }

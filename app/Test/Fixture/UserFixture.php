@@ -41,8 +41,8 @@ class UserFixture extends CakeTestFixture {
 			'email' => 'Lorem ipsum dolor sit amet',
 			'phone_number' => 'Lorem ipsum dolor sit amet',
 			'role_id' => 1,
-			'created_at' => 1567079652,
-			'updated_at' => 1567079652
+			'created_at' => '2019-04-14 19:29:40',
+			'updated_at' => '2019-04-14 19:29:40'
 		),
 	);
 
