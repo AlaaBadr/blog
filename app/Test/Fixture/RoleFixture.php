@@ -26,8 +26,12 @@ class RoleFixture extends CakeTestFixture {
 	public $records = array(
 		array(
 			'id' => 1,
-			'name' => 'Lorem ipsum dolor sit amet'
+			'name' => 'admin',
 		),
+        array(
+            'id' => 2,
+            'name' => 'author',
+        ),
 	);
 
 }

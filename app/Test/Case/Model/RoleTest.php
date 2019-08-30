@@ -39,4 +39,40 @@ class RoleTest extends CakeTestCase {
 		parent::tearDown();
 	}
 
+    public function testGetAllRoles() {
+        $data = $this->Role->getAllRoles();
+
+        $expected = array(
+            array(
+                'id' => 1,
+                'name' => 'admin',
+            ),
+            array(
+                'id' => 2,
+                'name' => 'author',
+            ),
+        );
+
+        $result = Hash::extract($data, '{n}.Role');
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testAddRole() {
+        $postData = array('name' => 'testing role');
+
+        $numRecordsBefore = $this->Role->find('count');
+        $data = $this->Role->addRole($postData);
+        $result = $data['Role'];
+        $numRecordsAfter = $this->Role->find('count');
+
+        $expected = array(
+            'id' => 3,
+            'name' => 'testing role',
+        );
+
+        $this->assertEquals(3, $numRecordsAfter);
+        $this->assertTrue($numRecordsBefore != $numRecordsAfter);
+        $this->assertEquals($expected, $result);
+    }
 }
