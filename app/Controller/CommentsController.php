@@ -21,7 +21,7 @@ class CommentsController extends AppController
             );
             $this->Comment->create();
             if ($this->Comment->addComment($data)) {
-                $this->Flash->success('The Post has been created!');
+                $this->Flash->success('The Comment has been added!');
                 $this->redirect(
                     array(
                         'controller' => 'posts',
@@ -41,7 +41,7 @@ class CommentsController extends AppController
         if ($this->request->is(array('post', 'put'))) {
             $this->Comment->id = $id;
             if ($this->Comment->editComment($this->request->data)) {
-                $this->Flash->success('The Post has been edited!');
+                $this->Flash->success('The comment has been edited!');
                 $this->redirect(
                     array(
                         'controller' => 'posts',
@@ -62,7 +62,7 @@ class CommentsController extends AppController
 
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Comment->delete()) {
-                $this->Flash->success('The Post has been deleted!');
+                $this->Flash->success('The Comment has been deleted!');
                 $this->redirect(
                     array(
                         'controller' => 'posts',

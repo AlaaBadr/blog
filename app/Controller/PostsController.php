@@ -47,7 +47,13 @@ class PostsController extends AppController {
             $this->Post->id = $id;
             if ($this->Post->editPost($this->request->data)) {
                 $this->Flash->success('The Post has been edited!');
-                $this->redirect('index');
+                $this->redirect(
+                    array(
+                        'controller' => 'posts',
+                        'action' => 'view',
+                        $id
+                    )
+                );
             }
         }
 

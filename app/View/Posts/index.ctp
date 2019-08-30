@@ -86,7 +86,13 @@ body {
                 echo $this->Html->link(
                     'Profile',
                     array('controller' => 'users', 'action' => 'view', AuthComponent::user('id'))
-                );
+                )." ";
+                if (AuthComponent::user('role_id') == 1) {
+                    echo $this->Html->link(
+                        'Users',
+                        array('controller' => 'users', 'action' => 'index')
+                    );
+                }
             } else {
                 echo $this->Html->link(
                     'Login',

@@ -38,7 +38,7 @@ class UsersController extends AppController {
 	public function login() {
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
-                return $this->redirect($this->Auth->redirectUrl());
+                $this->redirect('/posts/index');
             } else {
                 $this->Flash->error('Invalid Username or Password!');
             }
@@ -60,7 +60,7 @@ class UsersController extends AppController {
                     $this->User->id = $id;
                     $this->request->data['User']['password'] = AuthComponent::password($this->request->data['User']['newPassword']);
                     if ($this->User->editUser($this->request->data)) {
-                        $this->Flash->success('Profile Information has been updated!');
+                        $this->Flash->success('Password is changed successfully');
                         $this->redirect(
                             array(
                                 'controller' => 'users',
@@ -157,9 +157,6 @@ class UsersController extends AppController {
         }
 
         $this->request->data = $data;
-
-        $roles = $this->User->Role->find('list');
-        $this->set(compact('roles'));
     }
 
     /**
